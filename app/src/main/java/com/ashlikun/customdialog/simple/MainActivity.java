@@ -1,4 +1,4 @@
-package com.ashlikun.customdialog;
+package com.ashlikun.customdialog.simple;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
