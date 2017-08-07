@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hbung.numberprogressbar.NumberProgressBar;
-import com.hbung.utils.ui.UiUtils;
+import com.ashlikun.utils.ui.UiUtils;
 
 /**
  * 作者　　: 李坤

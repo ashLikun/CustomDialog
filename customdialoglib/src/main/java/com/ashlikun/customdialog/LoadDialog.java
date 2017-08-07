@@ -7,8 +7,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hbung.utils.ui.DrawableUtils;
-import com.hbung.utils.ui.UiUtils;
+import com.ashlikun.utils.ui.DrawableUtils;
+import com.ashlikun.utils.ui.UiUtils;
 
 
 /**

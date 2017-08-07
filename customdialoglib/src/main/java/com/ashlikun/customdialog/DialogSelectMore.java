@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.hbung.utils.ui.ScreenInfoUtils;
+import com.ashlikun.utils.ui.ScreenInfoUtils;
 
 /**
  * 作者　　: 李坤
