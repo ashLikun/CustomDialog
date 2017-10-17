@@ -12,9 +12,12 @@ import com.ashlikun.utils.ui.UiUtils;
 
 
 /**
- * Created by Administrator on 2016/7/29.
+ * 作者　　: 李坤
+ * 创建时间: 2017/10/17 16:57
+ * 邮箱　　：496546144@qq.com
+ *
+ * 方法功能：加载中的对话框
  */
-
 public class LoadDialog extends Dialog {
     public LoadDialog(Context context) {
         super(context, R.style.Dialog_Loadding);
