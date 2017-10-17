@@ -3,13 +3,12 @@
     android:id="@+id/dialog_select_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/dp_10">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:orientation="vertical">
 
         <TextView
@@ -20,7 +19,7 @@
             android:padding="15dp"
             android:text="**"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_xxm" />
+            android:textSize="@dimen/dp_15" />
 
         <View
             android:layout_width="match_parent"
@@ -36,12 +35,12 @@
             android:padding="15dp"
             android:text="**"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_xxm" />
+            android:textSize="@dimen/dp_15" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@android:color/darker_gray" />
+            android:layout_height="10dp"
+            android:background="#f1f1f1" />
 
 
         <TextView
@@ -52,8 +51,8 @@
             android:gravity="center"
             android:padding="15dp"
             android:text="取消"
-            android:textColor="#ffff0000"
-            android:textSize="@dimen/text_xxm" />
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/dp_16" />
 
     </LinearLayout>
 </LinearLayout>

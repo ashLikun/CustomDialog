@@ -71,6 +71,17 @@ public class DialogSelectMore extends Dialog implements View.OnClickListener {
         tv_item2.setText(item2);
     }
 
+    public TextView getTv_item1() {
+        return tv_item1;
+    }
+
+    public TextView getTv_item2() {
+        return tv_item2;
+    }
+
+    public TextView getCancel() {
+        return cancel;
+    }
 
     public void onClick(View view) {
 

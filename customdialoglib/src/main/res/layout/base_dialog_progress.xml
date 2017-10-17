@@ -19,7 +19,7 @@
         android:maxLines="2"
         android:text="加载中"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_xxm" />
+        android:textSize="@dimen/dp_16" />
 
     <com.hbung.numberprogressbar.NumberProgressBar
         android:id="@+id/progressBar"
@@ -32,7 +32,7 @@
         app:progress_reached_color="@color/colorPrimary"
         app:progress_text_color="@color/colorPrimary"
         app:progress_text_offset="2dp"
-        app:progress_text_size="@dimen/text_h"
+        app:progress_text_size="@dimen/dp_14"
         app:progress_unreached_bar_height="2dp"
         app:progress_unreached_color="@android:color/darker_gray" />
 

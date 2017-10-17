@@ -24,6 +24,6 @@
         android:layout_marginTop="3dp"
         android:text="  载入中..."
         android:textColor="@android:color/black"
-        android:textSize="@dimen/text_xxm" />
+        android:textSize="@dimen/dp_16" />
 
 </LinearLayout>
