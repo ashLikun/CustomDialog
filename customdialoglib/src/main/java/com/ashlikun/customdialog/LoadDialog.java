@@ -23,7 +23,7 @@ public class LoadDialog extends Dialog {
         super(context, R.style.Dialog_Loadding);
         setContentView(R.layout.base_dialog_loadding);
         getWindow().getAttributes().gravity = Gravity.CENTER;
-        getWindow().setBackgroundDrawable(new DrawableUtils(getContext()).getGradientDrawable(R.color.white_90, 0, 10, 0));
+        getWindow().setBackgroundDrawable(new DrawableUtils(getContext()).getGradientDrawable(R.color.white_90, 0, 10f, 0f));
     }
 
     @Override
