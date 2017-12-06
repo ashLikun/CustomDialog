@@ -21,7 +21,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/dp_16" />
 
-    <com.hbung.numberprogressbar.NumberProgressBar
+    <com.ashlikun.numberprogressbar.NumberProgressBar
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

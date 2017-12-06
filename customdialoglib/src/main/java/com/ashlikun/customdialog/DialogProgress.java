@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hbung.numberprogressbar.NumberProgressBar;
+import com.ashlikun.numberprogressbar.NumberProgressBar;
 import com.ashlikun.utils.ui.UiUtils;
 
 /**
