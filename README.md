@@ -1,5 +1,26 @@
-# **customdialog**
-常用的对话框
+[![Release](https://jitpack.io/v/ashLikun/customdialog.svg)](https://jitpack.io/#ashLikun/customdialog)
+
+customdialog项目简介
+   常用的对话框
+
+## 使用方法
+
+build.gradle文件中添加:
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+并且:
+
+```gradle
+dependencies {
+    compile 'com.github.ashLikun:CustomMvp:{latest version}'
+}
+```
+
 
 
 ### 1.用法
