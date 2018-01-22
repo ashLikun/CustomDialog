@@ -18,6 +18,9 @@ allprojects {
 ```gradle
 dependencies {
     compile 'com.github.ashLikun:CustomMvp:{latest version}'
+
+    compile 'com.github.ashLikun.frame:numberprogressbar:2.0.6'
+    compile 'com.github.ashLikun:CommonUtils:1.3.7'
 }
 ```
 
