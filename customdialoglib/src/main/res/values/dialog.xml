@@ -63,12 +63,12 @@
 
 
     <!--选择分类-->
-    <style name="Dialog.select" parent="@style/Dialog">
+    <style name="Dialog.SelectMore" parent="@style/Dialog">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
     </style>
 
     <!--选择表情-->
-    <style name="Dialog.emoji" parent="@style/Dialog">
+    <style name="Dialog.Emoji" parent="@style/Dialog">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
         <item name="android:windowIsTranslucent">true</item>
         <!--是否模糊-->
@@ -82,12 +82,13 @@
         <!--模糊-->
     </style>
 
-    <style name="Dialog.progress" parent="Dialog">
+    <style name="Dialog.Progress" parent="Dialog">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.progress</item>
     </style>
 
 
-    <style name="Dialog.Botton_Form_top" parent="@style/Dialog">
+    <!--底部出现-->
+    <style name="Dialog.BottonFormTop" parent="@style/Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">false</item>

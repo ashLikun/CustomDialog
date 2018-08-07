@@ -1,6 +1,5 @@
 package com.ashlikun.customdialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ashlikun.numberprogressbar.NumberProgressBar;
-import com.ashlikun.utils.ui.UiUtils;
 
 /**
  * 作者　　: 李坤
@@ -18,34 +16,35 @@ import com.ashlikun.utils.ui.UiUtils;
  * 方法功能：加载精度对话框
  */
 
-public class DialogProgress extends Dialog {
+public class DialogProgress extends BaseDialog {
     private Context context;
     private NumberProgressBar progressBar;
     private TextView titleView;
 
     public DialogProgress(Context context) {
-        this(context, R.style.Dialog_progress);
+        this(context, R.style.Dialog_Progress);
     }
 
     public DialogProgress(Context context, int theme) {
         super(context, theme);
         this.context = context;
-        initView();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
-    private void initView() {
-        setContentView(UiUtils.getInflaterView(context, R.layout.base_dialog_progress));
+    @Override
+    public int getLayoutId() {
+        return R.layout.base_dialog_progress;
+    }
+
+    @Override
+    protected void initView() {
         setCancelable(false);
-        progressBar = (NumberProgressBar) findViewById(R.id.progressBar);
-        titleView = (TextView) findViewById(R.id.title);
+        progressBar = f(R.id.progressBar);
+        titleView = f(R.id.title);
     }
 
     public DialogProgress setProgress(int progress) {
@@ -56,8 +55,9 @@ public class DialogProgress extends Dialog {
     public DialogProgress setTitleText(String title) {
         if (TextUtils.isEmpty(title)) {
             titleView.setVisibility(View.GONE);
-        } else
+        } else {
             titleView.setText(title);
+        }
         return this;
     }
 
@@ -73,7 +73,6 @@ public class DialogProgress extends Dialog {
      */
     public DialogProgress getMaxValus(int max) {
         progressBar.setMax(max);
-
         return this;
     }
 

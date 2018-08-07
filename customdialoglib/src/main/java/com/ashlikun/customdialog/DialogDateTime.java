@@ -39,6 +39,7 @@ import java.util.Locale;
  * 方法功能：时间选择对话框
  */
 
+@SuppressLint("ValidFragment")
 public class DialogDateTime extends DialogFragment implements View.OnClickListener {
     public static int MAX_YEAR = 3;
     public static int MIN_YEAR = -3;
@@ -69,12 +70,6 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
 
         }
     }
-
-    public DialogDateTime() {
-        super();
-    }
-
-    @SuppressLint("ValidFragment")
     public DialogDateTime(FragmentActivity context, MODE mode) {
         this.mode = mode;
         this.activity = context;
@@ -85,6 +80,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         onClickCallback = callback;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Context contextThemeWrapper = new ContextThemeWrapper(
@@ -128,7 +124,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         getDialog().getWindow().getAttributes().gravity = Gravity.CENTER;
 
 
-         /*
+        /*
          * 将对话框的大小按屏幕大小的百分比设置
          */
 //        ScreenInfoUtils screenInfoUtils = new ScreenInfoUtils(context);
@@ -191,7 +187,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.quxiao) {
             quxiaoOnClick(v);
-        } else if (v.getId() == R.id.quxiao) {
+        } else if (v.getId() == R.id.confirm) {
             quedingOnClick(v);
         }
     }
@@ -249,6 +245,8 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
             super.onCreate(savedInstanceState);
         }
 
+        @SuppressLint("RestrictedApi")
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             if (mode == 1) {
                 Context contextThemeWrapper = new ContextThemeWrapper(
@@ -447,8 +445,8 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     }
 
     /*
-   * 设置标题
-   */
+     * 设置标题
+     */
     public DialogDateTime setTitleMain(CharSequence title) {
         this.title = title;
         return this;
@@ -459,7 +457,9 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     }
 
     private Calendar stringToTime(String calendar) {
-        if (calendar == null) return null;
+        if (calendar == null) {
+            return null;
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         try {
             Calendar c = Calendar.getInstance();

@@ -1,22 +1,21 @@
 package com.ashlikun.customdialog;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.ashlikun.utils.ui.ScreenInfoUtils;
-
 
 /**
- * 透明对话框
- * Created by yang on 2016/8/24.
+ * @author　　: 李坤
+ * 创建时间: 2018/8/7 15:25
+ * 邮箱　　：496546144@qq.com
+ * <p>
+ * 功能介绍：透明对话框
  */
 
-public class DialogTransparency extends Dialog {
-    private Context context;
+
+public class DialogTransparency extends BaseDialog {
 
     public DialogTransparency(Context context) {
         this(context, R.style.Dialog_Translucent);
@@ -24,25 +23,32 @@ public class DialogTransparency extends Dialog {
 
     public DialogTransparency(Context context, int themeResId) {
         super(context, themeResId);
-        this.context = context;
-        init();
-    }
-
-    private void init() {
-        View view = new View(context);
-        setContentView(view);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected View getLayoutView() {
+        View view = new View(getContext());
+        return view;
+    }
 
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        ScreenInfoUtils screen = new ScreenInfoUtils();
-        lp.width = (screen.getWidth()); //设置宽度
-        lp.height = (screen.getHeight()); //设置宽度
-        getWindow().setAttributes(lp);
-        getWindow().getAttributes().gravity = Gravity.CENTER;
+    @Override
+    public void initWindowParams(WindowManager.LayoutParams params) {
+        super.initWindowParams(params);
+        //设置宽度
+        params.width = getDisplayMetrics().widthPixels;
+        //设置宽度
+        params.height = getDisplayMetrics().heightPixels;
+        params.gravity = Gravity.CENTER;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
 

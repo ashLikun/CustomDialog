@@ -3,4 +3,5 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="white_90">#90ffffff</color>
     <color name="text_color">#999999</color>
+    <color name="basedialog_load_circle_color">#ff676767</color>
 </resources>
