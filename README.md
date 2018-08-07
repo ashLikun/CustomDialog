@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/ashLikun/customdialog.svg)](https://jitpack.io/#ashLikun/customdialog)
+[![Release](https://jitpack.io/v/ashLikun/CustomDialog.svg)](https://jitpack.io/#ashLikun/CustomDialog)
 
 customdialog项目简介
    常用的对话框
@@ -17,20 +17,37 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.ashLikun:CustomMvp:{latest version}'
-
-    compile 'com.github.ashLikun.frame:numberprogressbar:2.0.6'
-    compile 'com.github.ashLikun:CommonUtils:1.3.7'
+    implementation 'com.github.ashLikun.CustomDialog:{latest version}'
+    implementation 'com.github.ashLikun.frame:numberprogressbar:+'
+    implementation 'com.github.ashLikun:CircleProgressView:+'
 }
 ```
 
 
 
 ### 1.用法
-使用前，对于Android Studio的用户，可以选择添加:
-     compile 'com.github.ashLikun:CustomDialog:1.0.4'//常用的对话框
-     compile 'com.github.ashLikun.frame:flatbutton:1.3.9'
-     compile 'com.github.ashLikun.frame:numberprogressbar:1.3.9'
-     compile 'com.github.ashLikun.frame:utils:1.3.9'
+```java
+
+    public void onProgressClick(View view) {
+        DialogProgress progress = new DialogProgress(this);
+        progress.show();
+    }
+
+    public void onTimeClick(View view) {
+        DialogDateTime progress = new DialogDateTime(this, DialogDateTime.MODE.DATE_Y_M_D_H_M);
+        progress.show();
+    }
+
+    public void onSelectMoreClick(View view) {
+        DialogSelectMore progress = new DialogSelectMore(this, "11111", "22222222", "333333333");
+        progress.show();
+    }
+
+    public void onLoadDialogClick(View view) {
+        LoadDialog progress = new LoadDialog(this);
+        progress.show();
+    }
+
+```
 
 

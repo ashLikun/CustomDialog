@@ -30,10 +30,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile rootProject.ext.designVersion
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.ashLikun.frame:numberprogressbar:+'
-    compile 'com.github.ashLikun:CircleProgressView:+'
-    compile project(':customdialoglib')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.designVersion
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.github.ashLikun.frame:numberprogressbar:+'
+    implementation 'com.github.ashLikun:CircleProgressView:+'
+    implementation project(':customdialoglib')
 }
