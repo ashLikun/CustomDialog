@@ -32,23 +32,26 @@
 
 
     <style name="Dialog" parent="android:Theme.Holo.Light.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowAnimationStyle">@style/Animation.Dialog</item>
-        <item name="android:windowFrame">@null</item>
-        <!--边框-->
-        <item name="android:windowIsFloating">true</item>
-        <!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">false</item>
-        <!--半透明-->
-
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+    </style>
+    <!--底部出现-->
+    <style name="Dialog.BottonFormTop" parent="@style/Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
     </style>
 
     <!--透明-->
     <style name="Dialog.Translucent" parent="Dialog">
         <item name="android:windowFullscreen">true</item><!--全屏-->
-        <item name="android:backgroundDimEnabled">false</item><!--背景为亮的-->
+        <item name="android:backgroundDimEnabled">false</item> <!--是否模糊-->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
@@ -78,21 +81,13 @@
 
     <style name="Dialog.Loadding" parent="Dialog">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog</item>
-        <item name="android:backgroundDimEnabled">false</item>
         <!--模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="Dialog.Progress" parent="Dialog">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.progress</item>
     </style>
 
-
-    <!--底部出现-->
-    <style name="Dialog.BottonFormTop" parent="@style/Dialog">
-        <item name="android:windowIsTranslucent">true</item>
-        <!--是否模糊-->
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
-    </style>
 
 </resources>
