@@ -18,7 +18,7 @@ import android.view.WindowManager;
 public class DialogTransparency extends BaseDialog {
 
     public DialogTransparency(Context context) {
-        this(context, R.style.Dialog_Translucent);
+        this(context, R.style.Dialog_Fullscreen);
     }
 
     public DialogTransparency(Context context, int themeResId) {

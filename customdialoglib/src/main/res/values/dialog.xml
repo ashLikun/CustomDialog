@@ -41,37 +41,36 @@
         <item name="android:windowIsTranslucent">true</item><!--半透明-->
     </style>
     <!--底部出现-->
-    <style name="Dialog.BottonFormTop" parent="@style/Dialog">
+    <style name="Dialog.BottonFormTop">
         <item name="android:windowIsTranslucent">true</item>
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
     </style>
 
-    <!--透明-->
-    <style name="Dialog.Translucent" parent="Dialog">
+    <!--全屏-->
+    <style name="Dialog.Fullscreen">
         <item name="android:windowFullscreen">true</item><!--全屏-->
         <item name="android:backgroundDimEnabled">false</item> <!--是否模糊-->
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item><!--是否浮现在activity之上-->
     </style>
 
     //=========================================================================上面是基础属性======================================================================
 
-
     <!--发布-->
-    <style name="Dialog.issue" parent="@style/Dialog">
+    <style name="Dialog.issue">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Scale</item>
     </style>
 
 
     <!--选择分类-->
-    <style name="Dialog.SelectMore" parent="@style/Dialog">
+    <style name="Dialog.SelectMore">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
     </style>
 
     <!--选择表情-->
-    <style name="Dialog.Emoji" parent="@style/Dialog">
+    <style name="Dialog.Emoji">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
         <item name="android:windowIsTranslucent">true</item>
         <!--是否模糊-->
@@ -79,15 +78,14 @@
     </style>
 
 
-    <style name="Dialog.Loadding" parent="Dialog">
+    <style name="Dialog.Loadding">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog</item>
         <!--模糊-->
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="Dialog.Progress" parent="Dialog">
+    <style name="Dialog.Progress">
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.progress</item>
     </style>
-
 
 </resources>
