@@ -30,7 +30,7 @@
             android:padding="15dp"
             android:text="取消"
             android:textColor="@color/dialog_select_cancel_text_color"
-            android:textSize="@dimen/dp_16" />
+            android:textSize="16dp" />
 
     </LinearLayout>
 </LinearLayout>

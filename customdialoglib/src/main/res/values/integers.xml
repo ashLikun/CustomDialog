@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="circle_default_angleAnimationDuration">2000</integer>
-    <integer name="circle_default_miniSweepAngle">30</integer>
-    <integer name="circle_default_sweepAnimationDuration">900</integer>
+    <integer name="dialog_load_angleAnimationDuration">2000</integer>
+    <integer name="dialog_load_default_miniSweepAngle">30</integer>
+    <integer name="dialog_load_default_sweepAnimationDuration">900</integer>
 </resources>

@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_main_color_top_circle"
         android:gravity="center_horizontal"
-        android:paddingLeft="@dimen/dp_10"
-        android:paddingTop="@dimen/dp_15"
-        android:paddingRight="@dimen/dp_10"
-        android:paddingBottom="@dimen/dp_15"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp"
         android:text="**"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/dp_14" />
+        android:textSize="14dp" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
@@ -57,7 +57,7 @@
             android:padding="10dp"
             android:text="取消"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/dp_14" />
+            android:textSize="14dp" />
 
         <View
             android:layout_width="1dp"
@@ -73,7 +73,7 @@
             android:padding="10dp"
             android:text="确定"
             android:textColor="@color/dialog_data_queding_color"
-            android:textSize="@dimen/dp_14" />
+            android:textSize="14dp" />
     </LinearLayout>
 
 </LinearLayout>

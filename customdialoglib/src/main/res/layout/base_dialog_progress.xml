@@ -19,7 +19,7 @@
         android:maxLines="2"
         android:text="加载中"
         android:textColor="@color/dialog_progress_text_color"
-        android:textSize="@dimen/dp_16" />
+        android:textSize="16dp" />
 
     <com.ashlikun.numberprogressbar.NumberProgressBar
         android:id="@+id/progressBar"
@@ -32,7 +32,7 @@
         app:progress_reached_color="@color/dialog_progress_text_color"
         app:progress_text_color="@color/dialog_progress_text_color"
         app:progress_text_offset="2dp"
-        app:progress_text_size="@dimen/dp_14"
+        app:progress_text_size="14dp"
         app:progress_unreached_bar_height="2dp"
         app:progress_unreached_color="@android:color/darker_gray" />
 
