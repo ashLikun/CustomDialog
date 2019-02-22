@@ -27,7 +27,16 @@ dependencies {
 
 ### 1.用法
 ```java
-
+ <!--加载框背景-->
+    <color name="dialog_load_back_color">#90ffffff</color>
+    <!--加载框标题-->
+    <color name="dialog_load_title_color">#ff555555</color>
+    <!--加载框圆圈颜色-->
+    <color name="dialog_load_circle_color">#ff676767</color>
+    <color name="dialog_progress_text_color">#ff555555</color>
+    <color name="dialog_select_cancel_text_color">#999999</color>
+    <color name="dialog_data_back_color">#ffffffff</color>
+    <color name="dialog_data_queding_color">#ff333333</color>
     public void onProgressClick(View view) {
         DialogProgress progress = new DialogProgress(this);
         progress.show();

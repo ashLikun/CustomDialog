@@ -18,7 +18,7 @@
         android:gravity="center"
         android:maxLines="2"
         android:text="加载中"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/dialog_progress_text_color"
         android:textSize="@dimen/dp_16" />
 
     <com.ashlikun.numberprogressbar.NumberProgressBar
@@ -29,8 +29,8 @@
         app:progress_current="20"
         app:progress_max="100"
         app:progress_reached_bar_height="2dp"
-        app:progress_reached_color="@color/colorPrimary"
-        app:progress_text_color="@color/colorPrimary"
+        app:progress_reached_color="@color/dialog_progress_text_color"
+        app:progress_text_color="@color/dialog_progress_text_color"
         app:progress_text_offset="2dp"
         app:progress_text_size="@dimen/dp_14"
         app:progress_unreached_bar_height="2dp"

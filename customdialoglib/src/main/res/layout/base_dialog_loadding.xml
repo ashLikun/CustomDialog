@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:background="#ff0000"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">
@@ -14,10 +15,9 @@
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/tvLoadMore"
         app:cpv_angleAnimationDurationMillis="@integer/circle_default_angleAnimationDuration"
         app:cpv_borderWidth="2dp"
-        app:cpv_color="@color/basedialog_load_circle_color"
+        app:cpv_color="@color/dialog_load_circle_color"
         app:cpv_sweepAnimationDurationMillis="@integer/circle_default_sweepAnimationDuration" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:text="  载入中..."
-        android:textColor="#555555"
+        android:textColor="@color/dialog_load_title_color"
         android:textSize="@dimen/dp_16" />
 
 </LinearLayout>

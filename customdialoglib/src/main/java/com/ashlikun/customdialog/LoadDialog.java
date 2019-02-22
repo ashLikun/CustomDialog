@@ -22,8 +22,11 @@ public class LoadDialog extends BaseDialog {
 
     @Override
     public void initWindowParams(WindowManager.LayoutParams params) {
-        params.gravity = Gravity.CENTER;
-        getWindow().setBackgroundDrawable(getGradientDrawable());
+        View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        if (rootView != null && rootView.getBackground() == null) {
+            params.gravity = Gravity.CENTER;
+            getWindow().setBackgroundDrawable(getGradientDrawable());
+        }
         super.initWindowParams(params);
     }
 
@@ -39,7 +42,7 @@ public class LoadDialog extends BaseDialog {
 
     private GradientDrawable getGradientDrawable() {
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(getContext().getResources().getColor(R.color.white_90));
+        drawable.setColor(getContext().getResources().getColor(R.color.dialog_load_back_color));
         drawable.setCornerRadius(dip2px(getContext(), 10));
         return drawable;
     }

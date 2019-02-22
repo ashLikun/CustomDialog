@@ -25,7 +25,7 @@ public abstract class BaseDialog extends Dialog {
 
     public BaseDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
-        if (getLayoutId() <= 0) {
+        if (getLayoutId() == 0) {
             setContentView(getLayoutView());
         } else {
             setContentView(getLayoutId());
