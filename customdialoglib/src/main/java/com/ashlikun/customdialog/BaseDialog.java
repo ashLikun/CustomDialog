@@ -3,11 +3,12 @@ package com.ashlikun.customdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 
 /**
  * 作者　　: 李坤

@@ -16,23 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /**
-     * aar文件的编译
-     */
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-        maven {
-            url "https://jitpack.io"
-        }
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.designVersion
-    compileOnly 'com.github.ashLikun.frame:numberprogressbar:+'
+    compileOnly 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
     compileOnly 'com.github.ashLikun:CircleProgressView:+'
 }
 apply from: '../maven.gradle'
