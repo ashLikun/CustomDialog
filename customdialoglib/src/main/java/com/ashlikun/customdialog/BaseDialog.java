@@ -1,7 +1,9 @@
 package com.ashlikun.customdialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -108,6 +110,37 @@ public abstract class BaseDialog extends Dialog {
             wm.getDefaultDisplay().getMetrics(displayMetrics);
         }
         return displayMetrics;
+    }
+
+    /**
+     * 方法功能：从context中获取activity，如果context不是activity那么久返回null
+     */
+    public Activity getActivity() {
+        return getActivity(getContext());
+    }
+
+    private Activity getActivity(Context context) {
+        if (context == null) {
+            return null;
+        }
+        if (context instanceof Activity) {
+            return (Activity) context;
+        } else if (context instanceof ContextWrapper) {
+            return getActivity(((ContextWrapper) context).getBaseContext());
+        }
+        return null;
+    }
+
+    @Override
+    public void show() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            //如果页面销毁就不弹出
+            if (activity.isFinishing()) {
+                return;
+            }
+        }
+        super.show();
     }
 
     /**
