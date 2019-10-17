@@ -115,25 +115,25 @@ public abstract class BaseDialog extends Dialog {
     /**
      * 方法功能：从context中获取activity，如果context不是activity那么久返回null
      */
-    public Activity getActivity() {
-        return getActivity(getContext());
+    public Activity findActivity() {
+        return findActivity(getContext());
     }
 
-    private Activity getActivity(Context context) {
+    private Activity findActivity(Context context) {
         if (context == null) {
             return null;
         }
         if (context instanceof Activity) {
             return (Activity) context;
         } else if (context instanceof ContextWrapper) {
-            return getActivity(((ContextWrapper) context).getBaseContext());
+            return findActivity(((ContextWrapper) context).getBaseContext());
         }
         return null;
     }
 
     @Override
     public void show() {
-        Activity activity = getActivity();
+        Activity activity = findActivity();
         if (activity != null) {
             //如果页面销毁就不弹出
             if (activity.isFinishing()) {
