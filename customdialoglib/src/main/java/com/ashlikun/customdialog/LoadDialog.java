@@ -1,6 +1,7 @@
 package com.ashlikun.customdialog;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -22,11 +23,8 @@ public class LoadDialog extends BaseDialog {
 
     @Override
     public void initWindowParams(WindowManager.LayoutParams params) {
-        View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-        if (rootView != null && rootView.getBackground() == null) {
-            params.gravity = Gravity.CENTER;
-            getWindow().setBackgroundDrawable(getGradientDrawable());
-        }
+        params.gravity = Gravity.CENTER;
+        getWindow().setBackgroundDrawable(getBackgroundDrawable());
         super.initWindowParams(params);
     }
 
@@ -37,10 +35,9 @@ public class LoadDialog extends BaseDialog {
 
     @Override
     protected void initView() {
-
     }
 
-    private GradientDrawable getGradientDrawable() {
+    protected Drawable getBackgroundDrawable() {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setColor(getContext().getResources().getColor(R.color.dialog_load_back_color));
         drawable.setCornerRadius(dip2px(getContext(), 10));

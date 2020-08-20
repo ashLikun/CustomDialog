@@ -2,11 +2,11 @@ package com.ashlikun.customdialog;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,17 @@ import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,15 +34,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 
 /**
@@ -95,6 +97,16 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         return view;
     }
 
+    @ColorInt
+    public int resolveColor(Context context, @AttrRes int attr, int fallback) {
+        TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
+        try {
+            return a.getColor(0, fallback);
+        } finally {
+            a.recycle();
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,19 +133,6 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         }
 
 
-    }
-
-    private void init() {
-        getDialog().getWindow().getAttributes().gravity = Gravity.CENTER;
-
-
-        /*
-         * 将对话框的大小按屏幕大小的百分比设置
-         */
-//        ScreenInfoUtils screenInfoUtils = new ScreenInfoUtils(context);
-//        WindowManager.LayoutParams p = getWindow().getAttributes(); // 获取对话框当前的参数值
-//        p.width = screenInfoUtils.getWidth();
-//        getWindow().setAttributes(p);
     }
 
 
@@ -270,6 +269,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         }
 
         private void initDataPicker(DatePicker datePicker) {
+            datePicker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);  //设置点击事件不弹键盘
             DatePicker.OnDateChangedListener dateChangedListener = new DatePicker.OnDateChangedListener() {
                 @Override
                 public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

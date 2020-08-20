@@ -4,7 +4,9 @@
     <solid android:color="@color/dialog_data_back_color" />
 
     <corners
-        android:topLeftRadius="15dp"
-        android:topRightRadius="15dp" />
+        android:bottomLeftRadius="2dp"
+        android:bottomRightRadius="2dp"
+        android:topLeftRadius="2dp"
+        android:topRightRadius="2dp" />
 
 </shape>

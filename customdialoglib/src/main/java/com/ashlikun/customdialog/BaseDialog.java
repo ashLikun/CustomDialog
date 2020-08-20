@@ -153,10 +153,6 @@ public abstract class BaseDialog extends Dialog {
 
     /**
      * 自定义查找控件
-     *
-     * @param id
-     * @param <T>
-     * @return
      */
     public <T extends View> T f(@IdRes int id) {
         return findViewById(id);

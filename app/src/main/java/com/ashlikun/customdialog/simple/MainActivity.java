@@ -1,8 +1,9 @@
 package com.ashlikun.customdialog.simple;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ashlikun.customdialog.DialogDateTime;
 import com.ashlikun.customdialog.DialogProgress;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTimeClick(View view) {
         DialogDateTime progress = new DialogDateTime(this, DialogDateTime.MODE.DATE_Y_M_D_H_M);
+        progress.setTitleMain("选择时间");
         progress.show();
     }
 
