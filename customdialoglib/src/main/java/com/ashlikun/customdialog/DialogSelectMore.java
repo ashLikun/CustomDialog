@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -25,19 +27,36 @@ public class DialogSelectMore extends BaseDialog implements View.OnClickListener
 
     private String[] items;
     private RecyclerView recyclerView;
+    private View rootView;
 
     private OnClickCallback clickCallback;
     private int divColor = 0xffdddddd;
     private int divHeight = -1;
+    private Drawable bgDrawable;
 
 
     public DialogSelectMore(Context context, String... items) {
-        this(context, R.style.Dialog_SelectMore);
-        this.items = items;
+        this(context, R.style.Dialog_SelectMore, items);
+
+    }
+
+    public DialogSelectMore(@NonNull Context context, Drawable bgDrawable, String... items) {
+        this(context, R.style.Dialog_SelectMore, bgDrawable, items);
+
     }
 
     public DialogSelectMore(Context context, int themeResId) {
+        this(context, themeResId, null);
+    }
+
+    public DialogSelectMore(Context context, int themeResId, String... items) {
+        this(context, themeResId, null, items);
+    }
+
+    public DialogSelectMore(Context context, int themeResId, Drawable bgDrawable, String... items) {
         super(context, themeResId);
+        this.bgDrawable = bgDrawable;
+        this.items = items;
     }
 
 
@@ -56,11 +75,14 @@ public class DialogSelectMore extends BaseDialog implements View.OnClickListener
 
     @Override
     protected void initView() {
+        rootView = f(R.id.dialog_select_root);
         cancel = f(R.id.dialog_select_cancel);
         recyclerView = f(R.id.recycleView);
         cancel.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        if (bgDrawable != null) {
+            rootView.setBackground(bgDrawable);
+        }
         recyclerView.addItemDecoration(getItemDecoration());
         setAdapter();
     }
@@ -166,6 +188,11 @@ public class DialogSelectMore extends BaseDialog implements View.OnClickListener
 
     public DialogSelectMore setDivHeight(int divHeight) {
         this.divHeight = divHeight;
+        return this;
+    }
+
+    public DialogSelectMore setBgDrawable(Drawable bgDrawable) {
+        this.bgDrawable = bgDrawable;
         return this;
     }
 

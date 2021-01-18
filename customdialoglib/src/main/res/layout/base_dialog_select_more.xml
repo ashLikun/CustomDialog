@@ -6,31 +6,24 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f1f1f1" />
+
+    <TextView
+        android:id="@+id/dialog_select_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#f1f1f1" />
-
-        <TextView
-            android:id="@+id/dialog_select_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="取消"
-            android:textColor="@color/dialog_select_cancel_text_color"
-            android:textSize="16dp" />
-
-    </LinearLayout>
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="取消"
+        android:textColor="@color/dialog_select_cancel_text_color"
+        android:textSize="16dp" />
 </LinearLayout>
