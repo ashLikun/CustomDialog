@@ -18,7 +18,6 @@ import android.widget.TimePicker;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -88,10 +87,8 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Context contextThemeWrapper = new ContextThemeWrapper(
-                getActivity(),
-                android.R.style.Theme_Holo_Light);
-        View view = ((LayoutInflater) contextThemeWrapper.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.base_dialog_date_time, null);
+
+        View view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.base_dialog_date_time, null);
         initView(view);
 
         return view;
@@ -111,6 +108,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.Dialog);
+
         if (maxCalendar == null) {
             maxCalendar = Calendar.getInstance();
             maxCalendar.add(Calendar.YEAR, MAX_YEAR);
@@ -136,7 +134,7 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     }
 
 
-    private void initView(View view) {
+    protected void initView(View view) {
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         titleTv = (TextView) view.findViewById(R.id.title);
         viewpager = (ViewPager) view.findViewById(R.id.viewpager);
@@ -251,18 +249,12 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             if (mode == 1) {
-                Context contextThemeWrapper = new ContextThemeWrapper(
-                        getActivity(),
-                        android.R.style.Theme_Holo_Light);
-                datePicker = new DatePicker(contextThemeWrapper);
+                datePicker = new DatePicker(requireContext());
                 datePicker.setCalendarViewShown(false);
                 initDataPicker(datePicker);
                 return datePicker;
             } else {
-                Context contextThemeWrapper = new ContextThemeWrapper(
-                        getActivity(),
-                        android.R.style.Theme_Holo_Light);
-                timePicker = new TimePicker(contextThemeWrapper);
+                timePicker = new TimePicker(requireContext());
                 initTimePicker(timePicker);
                 return timePicker;
             }
