@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@drawable/custom_bg_number_progress_dialog"
     android:orientation="vertical"
-    android:paddingBottom="15dp"
     android:paddingLeft="10dp"
+    android:paddingTop="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp">
+    android:paddingBottom="15dp">
 
     <TextView
         android:id="@+id/title"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:maxLines="2"
-        android:text="加载中"
+        android:text="@string/base_dialog_progress_title"
         android:textColor="@color/dialog_progress_text_color"
         android:textSize="16dp" />
 

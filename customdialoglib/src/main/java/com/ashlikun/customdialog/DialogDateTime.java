@@ -7,10 +7,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -89,6 +91,8 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.base_dialog_date_time, null);
+        initWindowParams(getDialog().getWindow()
+                .getAttributes());
         initView(view);
 
         return view;
@@ -102,6 +106,22 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         } finally {
             a.recycle();
         }
+    }
+
+
+    public void initWindowParams(WindowManager.LayoutParams params) {
+        params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        params.windowAnimations = R.style.Animation_Dialog_Bottom_Form_top;
+        getDialog().getWindow().setAttributes(params);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().setCanceledOnTouchOutside(true);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDialog().getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -144,8 +164,8 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         titleTv.setText(title);
-        listTitle.add("日期");
-        listTitle.add("时间");
+        listTitle.add(getContext().getString(R.string.base_dialog_datetime_date));
+        listTitle.add(getContext().getString(R.string.base_dialog_datetime_time));
 
 
         listFragment.add(new DateTimeFragment(1, this));
@@ -249,12 +269,11 @@ public class DialogDateTime extends DialogFragment implements View.OnClickListen
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             if (mode == 1) {
-                datePicker = new DatePicker(requireContext());
-                datePicker.setCalendarViewShown(false);
+                datePicker = (DatePicker) inflater.inflate(R.layout.base_dialog_date_picker, null);
                 initDataPicker(datePicker);
                 return datePicker;
             } else {
-                timePicker = new TimePicker(requireContext());
+                timePicker = (TimePicker) inflater.inflate(R.layout.base_dialog_time_picker, null);
                 initTimePicker(timePicker);
                 return timePicker;
             }

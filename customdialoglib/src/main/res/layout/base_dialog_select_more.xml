@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:padding="15dp"
-        android:text="取消"
+        android:text="@string/base_dialog_cancel"
         android:textColor="@color/dialog_select_cancel_text_color"
         android:textSize="16dp" />
 </LinearLayout>

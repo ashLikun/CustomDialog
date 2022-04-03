@@ -99,6 +99,7 @@ open class DialogSelectMore(
         textView.setPadding(dp10, dp10, dp10, dp10)
         textView.setTextColor(-0xcccccd)
         textView.textSize = 15f
+
         return textView
     }
 

@@ -1,5 +1,6 @@
 package com.ashlikun.customdialog.simple
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val aa = resources.getString(resources.getIdentifier("base_dialog_loadding", "string", packageName))
+        val aaa = application.getString(resources.getIdentifier("base_dialog_loadding", "string", packageName))
+        val bb = resources.getResourceName(resources.getIdentifier("base_dialog_loadding", "string", packageName))
+        val cc = resources.assets.list("")
+        resources.getString(resources.getIdentifier("base_dialog_loadding", "string", packageName))
+
     }
+
+
+    private val mResources by lazy { LanguageResources(super.getResources()) }
+
+    override fun getResources() = mResources
 
     fun onProgressClick(view: View?) {
         val progress = DialogProgress(this)
