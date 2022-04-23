@@ -40,4 +40,9 @@
         android:layout_height="wrap_content"
         android:onClick="onLoadDialogClick"
         android:text="加载中对话框" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dialogTransparency"
+        android:text="DialogTransparency" />
 </LinearLayout>

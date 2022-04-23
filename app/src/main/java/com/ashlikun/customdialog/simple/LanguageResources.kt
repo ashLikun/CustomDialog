@@ -27,9 +27,9 @@ class LanguageResources(val resources: Resources)
      * 这里获取服务器的
      */
     fun thisLanguageKVMap(name: String): String? {
-        if (name == "base_dialog_loadding") {
-            return "base_dialog_loadding"
-        }
+//        if (name == "base_dialog_loadding") {
+//            return "base_dialog_loadding"
+//        }
         return null
     }
 

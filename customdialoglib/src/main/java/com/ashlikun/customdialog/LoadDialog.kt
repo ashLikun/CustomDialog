@@ -15,18 +15,13 @@ import android.widget.TextView
  * 功能介绍：加载中的对话框
  */
 open class LoadDialog(context: Context) : BaseDialog(context, R.style.Dialog_Loadding) {
-    val backgroundDrawable by lazy {
+    override val backgroundDrawable by lazy {
         GradientDrawable().apply {
             setColor(context.resources.getColor(R.color.dialog_load_back_color))
-            cornerRadius = dip2px(10f).toFloat()
+            cornerRadius = DialogUtils.dip2px(context, 10f).toFloat()
         }
     }
-
-    override fun initWindowParams(params: WindowManager.LayoutParams) {
-        params.gravity = Gravity.CENTER
-        requireWindow.setBackgroundDrawable(backgroundDrawable)
-        super.initWindowParams(params)
-    }
+    override val gravity = Gravity.CENTER
 
     override val layoutId: Int
         protected get() = R.layout.base_dialog_loadding

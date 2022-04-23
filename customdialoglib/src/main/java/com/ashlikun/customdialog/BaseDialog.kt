@@ -9,7 +9,10 @@ import android.view.WindowManager
 import android.view.View
 import android.app.Activity
 import android.content.ContextWrapper
+import android.graphics.drawable.Drawable
+import android.view.Gravity
 import android.view.Window
+import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
@@ -22,7 +25,18 @@ import androidx.viewbinding.ViewBinding
  *
  * 功能介绍：封装父类的Dialog
  */
-open abstract class BaseDialog @JvmOverloads constructor(context: Context, themeResId: Int = 0) :
+open abstract class BaseDialog @JvmOverloads
+constructor(
+    context: Context, themeResId: Int = 0,
+    open val width: Int? = null,
+    open val height: Int? = null,
+    open val gravity: Int? = null,
+    //优先级最低
+    open val layoutParams: WindowManager.LayoutParams? = null,
+    @DrawableRes
+    open val backgroundId: Int? = null,
+    open val backgroundDrawable: Drawable? = null
+) :
     Dialog(context, themeResId) {
     //获取布局view，优先级1
     protected open val layoutView: View? = null
@@ -41,19 +55,6 @@ open abstract class BaseDialog @JvmOverloads constructor(context: Context, theme
     open val requireActivity: Activity
         get() = findActivity(context)!!
 
-    protected open val layoutWidth: Int = 0
-    protected open val layoutHeight: Int = 0
-
-    /**
-     * 获取屏幕信息
-     */
-    val displayMetrics: DisplayMetrics by lazy {
-        DisplayMetrics().apply {
-            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getMetrics(
-                this
-            )
-        }
-    }
 
     /**
      * 这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
@@ -70,19 +71,24 @@ open abstract class BaseDialog @JvmOverloads constructor(context: Context, theme
         super.onCreate(savedInstanceState)
         //这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
         setContentView()
-        if (layoutWidth != 0 || layoutHeight != 0) {
-            val lp = requireWindow.attributes
-            if (layoutWidth != 0) {
-                lp.width = layoutWidth
-            }
-            if (layoutHeight != 0) {
-                lp.height = layoutHeight
-            }
-            requireWindow.attributes = lp
+        if (layoutParams != null) {
+            requireWindow.attributes = layoutParams
         }
         val params = requireWindow.attributes
+        width?.also {
+            params.width = it
+        }
+        height?.also {
+            params.height = it
+        }
+        gravity?.also {
+            params.gravity = it
+        }
         initWindowParams(params)
         requireWindow.attributes = params
+
+        backgroundId?.also(requireWindow::setBackgroundDrawableResource)
+        backgroundDrawable?.also(requireWindow::setBackgroundDrawable)
         initView()
     }
 
@@ -138,8 +144,5 @@ open abstract class BaseDialog @JvmOverloads constructor(context: Context, theme
         return findViewById(id)
     }
 
-    protected fun dip2px(dipValue: Float): Int {
-        val scale = context.resources.displayMetrics.density
-        return (dipValue * scale + 0.5f).toInt()
-    }
+
 }

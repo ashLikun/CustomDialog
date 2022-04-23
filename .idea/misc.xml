@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/likun/github/CustomDialog/app/src/main/res/layout/activity_main.xml" value="0.33299284984678246" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_date_picker.xml" value="0.17135416666666667" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_date_time.xml" value="0.359375" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_loadding.xml" value="0.17135416666666667" />

@@ -4,10 +4,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.ashlikun.customdialog.DialogDateTime
-import com.ashlikun.customdialog.DialogProgress
-import com.ashlikun.customdialog.DialogSelectMore
-import com.ashlikun.customdialog.LoadDialog
+import com.ashlikun.customdialog.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +41,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onLoadDialogClick(view: View?) {
         val progress = LoadDialog(this)
+        progress.show()
+    }
+
+    fun dialogTransparency(view: View?) {
+        val progress = DialogTransparency(this)
         progress.show()
     }
 }

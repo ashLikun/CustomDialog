@@ -1,6 +1,5 @@
 package com.ashlikun.customdialog
 
-import android.app.ActionBar
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -52,8 +51,8 @@ open class DialogSelectMore(
 
     override fun initWindowParams(params: WindowManager.LayoutParams) {
         params.gravity = Gravity.BOTTOM
-        params.width = displayMetrics.widthPixels
-        params.height = ActionBar.LayoutParams.WRAP_CONTENT
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
         super.initWindowParams(params)
     }
 
@@ -95,7 +94,7 @@ open class DialogSelectMore(
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
         textView.gravity = Gravity.CENTER
-        val dp10 = dip2px(15f)
+        val dp10 = DialogUtils.dip2px(context, 15f)
         textView.setPadding(dp10, dp10, dp10, dp10)
         textView.setTextColor(-0xcccccd)
         textView.textSize = 15f
@@ -194,7 +193,7 @@ open class DialogSelectMore(
 
         init {
             drawable = GradientDrawable()
-            drawable.setSize(-1, if (divHeight > 0) divHeight else dip2px(0.5f))
+            drawable.setSize(-1, if (divHeight > 0) divHeight else DialogUtils.dip2px(context, 0.5f))
             drawable.setColor(divColor)
         }
     }

@@ -3,6 +3,7 @@ package com.ashlikun.customdialog
 import android.content.Context
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 
 /**
@@ -16,19 +17,11 @@ import android.view.WindowManager
 open class DialogTransparency @JvmOverloads constructor(
     context: Context,
     themeResId: Int = R.style.Dialog_Fullscreen
-) : BaseDialog(context, themeResId) {
+) : BaseDialog(context, themeResId, width = ViewGroup.LayoutParams.MATCH_PARENT, height = ViewGroup.LayoutParams.MATCH_PARENT) {
 
     override val layoutView: View
         protected get() = View(context)
 
-    override fun initWindowParams(params: WindowManager.LayoutParams) {
-        super.initWindowParams(params)
-        //设置宽度
-        params.width = displayMetrics.widthPixels
-        //设置宽度
-        params.height = displayMetrics.heightPixels
-        params.gravity = Gravity.CENTER
-    }
 
     override val layoutId: Int
         protected get() = 0
