@@ -43,9 +43,9 @@ constructor(
     binding: Class<out ViewBinding>? = null
 ) : Dialog(context, themeResId) {
 
-    open val binding: ViewBinding?
-        get() = null
-
+    open val binding by lazy {
+        DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
+    }
     open val mRootView by lazy {
         when {
             layoutView != null -> layoutView!!

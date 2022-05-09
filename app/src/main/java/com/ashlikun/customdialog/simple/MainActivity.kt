@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class MyBaseSheetDialog(context: Context) : BaseSheetDialog(context) {
+class MyBaseSheetDialog(context: Context) : BaseSheetDialog(context, backgroundId = R.color.dialog_progress_text_color) {
     override val binding by lazy {
         Log.e("aaaa","2222222")
         SheetDialogBinding.inflate(layoutInflater)

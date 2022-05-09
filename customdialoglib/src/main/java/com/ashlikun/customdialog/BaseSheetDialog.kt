@@ -37,7 +37,7 @@ open class BaseSheetDialog(
     override val layoutId: Int = View.NO_ID,
     //获取布局 优先级3
     binding: Class<out ViewBinding>? = null,
-) : BaseDialog(context, themeResId, width, height, gravity, layoutParams, backgroundId, backgroundDrawable, layoutView, layoutId, binding) {
+) : BaseDialog(context, themeResId) {
 
 
     open lateinit var bottomSheetBehavior: XBottomSheetBehavior<out View>
@@ -84,6 +84,9 @@ open class BaseSheetDialog(
 
     override fun baseInitView() {
         super.baseInitView()
+        requireWindow.setBackgroundDrawableResource(android.R.color.transparent)
+        backgroundId?.also(sheetView::setBackgroundResource)
+        backgroundDrawable?.also(sheetView::setBackground)
         bottomSheetBehavior.hideThreshold = hideThreshold
         bottomSheetBehavior.peekHeight = peekHeight ?: height ?: 0
         bottomSheetBehavior.addBottomSheetCallback(object :
