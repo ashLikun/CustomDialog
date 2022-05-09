@@ -31,8 +31,14 @@ open class DialogSelectMore(
     open var divColor: Int = -0x222223,
     open var divHeight: Int = -1,
     var items: Array<String>
-) : BaseDialog(
-    context, themeResId
+) : BaseSheetDialog(
+    context,
+    themeResId,
+    gravity = Gravity.BOTTOM,
+    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+    peekHeight = context.resources.displayMetrics.heightPixels,
+    hideThreshold = 0.1f,
+    layoutId = R.layout.base_dialog_select_more
 ), View.OnClickListener {
     open val cancelTextView: TextView by lazy {
         f(R.id.dialog_select_cancel)
@@ -48,16 +54,6 @@ open class DialogSelectMore(
     open val itemDecoration by lazy {
         MyDiv(context)
     }
-
-    override fun initWindowParams(params: WindowManager.LayoutParams) {
-        params.gravity = Gravity.BOTTOM
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT
-        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        super.initWindowParams(params)
-    }
-
-    override val layoutId: Int
-        protected get() = R.layout.base_dialog_select_more
 
     override fun initView() {
         cancelTextView.setOnClickListener(this)

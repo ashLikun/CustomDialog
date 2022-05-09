@@ -43,10 +43,20 @@ constructor(
     binding: Class<out ViewBinding>? = null
 ) : Dialog(context, themeResId) {
 
-    open var binding: ViewBinding? = null
+    open val binding by lazy {
+        DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
+    }
 
-    open var mRootView: View? = null
-    protected val bindingClass: Class<out ViewBinding>? = binding
+    open val mRootView by lazy {
+        when {
+            layoutView != null -> layoutView!!
+            layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, null)
+            this.binding != null -> this.binding!!.root
+            else -> {
+                throw NullPointerException()
+            }
+        }
+    }
 
     //Window
     open val requireWindow: Window
@@ -64,17 +74,8 @@ constructor(
     }
 
     open fun createRootView(): View {
-        if (bindingClass != null) {
-            binding = DialogUtils.getViewBindingToClass(bindingClass, LayoutInflater.from(context), null, false) as? ViewBinding
-        }
-        mRootView = when {
-            layoutView != null -> layoutView!!
-            layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, null)
-            binding != null -> binding!!.root
-            else -> {
-                throw NullPointerException()
-            }
-        }
+
+
         return mRootView!!
     }
 

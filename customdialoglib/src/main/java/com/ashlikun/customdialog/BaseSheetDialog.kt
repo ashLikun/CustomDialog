@@ -10,6 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.XBottomSheetBehavior
 import java.lang.NullPointerException
+import kotlin.math.max
 
 /**
  * 作者　　: 李坤
@@ -28,7 +29,7 @@ open class BaseSheetDialog(
     @DrawableRes override val backgroundId: Int? = null,
     override val backgroundDrawable: Drawable? = null,
     open val hideThreshold: Float = 0.4f,
-    open val peekHeight: Int? = height ?: (context.resources.displayMetrics.heightPixels * hideThreshold).toInt(),
+    open val peekHeight: Int? = max((context.resources.displayMetrics.heightPixels * hideThreshold).toInt(), height ?: 0),
     //获取布局view，优先级1
     override val layoutView: View? = null,
     //获取布局id 优先级2
@@ -36,33 +37,35 @@ open class BaseSheetDialog(
     //获取布局 优先级3
     binding: Class<out ViewBinding>? = null,
 ) : BaseDialog(context, themeResId, width, height, gravity, layoutParams, backgroundId, backgroundDrawable, layoutView, layoutId, binding) {
+
+
+    open lateinit var bottomSheetBehavior: XBottomSheetBehavior<out View>
+    override val mRootView = CoordinatorLayout(context)
+    override val binding by lazy {
+        DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), mRootView, true) as? ViewBinding
+    }
+
     /**
      * BottomSheetBehavior 的目标view
      */
-    open lateinit var sheetView: View
-
-    open lateinit var bottomSheetBehavior: XBottomSheetBehavior<out View>
-
-    override fun createRootView() = CoordinatorLayout(context).apply {
-        if (bindingClass != null) {
-            binding = DialogUtils.getViewBindingToClass(bindingClass, LayoutInflater.from(context), this, true) as? ViewBinding
+    open val sheetView: View = when {
+        layoutView != null -> layoutView!!.also { mRootView.addView(it) }
+        layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, mRootView)
+            .run { (this as ViewGroup).getChildAt(0) }
+        this.binding != null -> this.binding!!.root
+        else -> {
+            throw NullPointerException()
         }
-        mRootView = when {
-            layoutView != null -> layoutView!!.also { addView(it) }
-            layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, this)
-            binding != null -> binding!!.root
-            else -> {
-                throw NullPointerException()
-            }
-        }
-        sheetView = mRootView!!
+    }
+
+    override fun createRootView() = mRootView.apply {
         runCatching {
             bottomSheetBehavior = BottomSheetBehavior.from(sheetView) as XBottomSheetBehavior
         }.onFailure {
             bottomSheetBehavior = XBottomSheetBehavior<View>(context).apply {
                 isHideable = true
             }
-            (mRootView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior = bottomSheetBehavior
+            (sheetView?.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior = bottomSheetBehavior
         }
     }
 
