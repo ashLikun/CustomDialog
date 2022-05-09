@@ -8,6 +8,4 @@
     <color name="dialog_load_circle_color">#ff676767</color>
     <color name="dialog_progress_text_color">#ff555555</color>
     <color name="dialog_select_cancel_text_color">#999999</color>
-    <color name="dialog_data_back_color">#ffffffff</color>
-    <color name="dialog_data_queding_color">#ff333333</color>
 </resources>

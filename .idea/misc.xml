@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/android_studio/sdk/platforms/android-30/data/res/layout/number_picker.xml" value="0.34427083333333336" />
         <entry key="..\:/likun/github/CustomDialog/app/src/main/res/layout/activity_main.xml" value="0.33299284984678246" />
+        <entry key="..\:/likun/github/CustomDialog/app/src/main/res/layout/sheet_dialog.xml" value="0.34427083333333336" />
+        <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/drawable/custom_bg_main_color_circle.xml" value="0.168" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_date_picker.xml" value="0.17135416666666667" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_date_time.xml" value="0.359375" />
         <entry key="..\:/likun/github/CustomDialog/customdialoglib/src/main/res/layout/base_dialog_loadding.xml" value="0.17135416666666667" />

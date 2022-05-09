@@ -3,19 +3,18 @@ package com.ashlikun.customdialog
 import kotlin.jvm.JvmOverloads
 import android.content.Context
 import android.app.Dialog
-import android.util.DisplayMetrics
 import android.os.Bundle
 import android.view.WindowManager
 import android.view.View
 import android.app.Activity
 import android.content.ContextWrapper
 import android.graphics.drawable.Drawable
-import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Window
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
-import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
+import java.lang.NullPointerException
 
 /**
  * 作者　　: 李坤
@@ -35,17 +34,19 @@ constructor(
     open val layoutParams: WindowManager.LayoutParams? = null,
     @DrawableRes
     open val backgroundId: Int? = null,
-    open val backgroundDrawable: Drawable? = null
-) :
-    Dialog(context, themeResId) {
+    open val backgroundDrawable: Drawable? = null,
     //获取布局view，优先级1
-    protected open val layoutView: View? = null
-
+    protected open val layoutView: View? = null,
     //获取布局id 优先级2
-    protected open val layoutId: Int = View.NO_ID
-
+    protected open val layoutId: Int = View.NO_ID,
     //获取布局 优先级3
-    protected open val binding: ViewBinding? = null
+    binding: Class<out ViewBinding>? = null
+) : Dialog(context, themeResId) {
+
+    open var binding: ViewBinding? = null
+
+    open var mRootView: View? = null
+    protected val bindingClass: Class<out ViewBinding>? = binding
 
     //Window
     open val requireWindow: Window
@@ -55,22 +56,38 @@ constructor(
     open val requireActivity: Activity
         get() = findActivity(context)!!
 
-
     /**
      * 这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
      */
     protected open fun setContentView() {
-        when {
-            layoutView != null -> setContentView(layoutView!!)
-            layoutId != View.NO_ID -> setContentView(layoutId)
-            binding != null -> setContentView(binding!!.root)
+        setContentView(createRootView())
+    }
+
+    open fun createRootView(): View {
+        if (bindingClass != null) {
+            binding = DialogUtils.getViewBindingToClass(bindingClass, LayoutInflater.from(context), null, false) as? ViewBinding
         }
+        mRootView = when {
+            layoutView != null -> layoutView!!
+            layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, null)
+            binding != null -> binding!!.root
+            else -> {
+                throw NullPointerException()
+            }
+        }
+        return mRootView!!
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
         setContentView()
+
+        baseInitView()
+        initView()
+    }
+
+    open fun baseInitView() {
         if (layoutParams != null) {
             requireWindow.attributes = layoutParams
         }
@@ -89,7 +106,6 @@ constructor(
 
         backgroundId?.also(requireWindow::setBackgroundDrawableResource)
         backgroundDrawable?.also(requireWindow::setBackgroundDrawable)
-        initView()
     }
 
 

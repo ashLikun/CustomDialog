@@ -4,7 +4,9 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import com.ashlikun.customdialog.*
+import com.ashlikun.customdialog.simple.databinding.SheetDialogBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onTimeClick(view: View?) {
-        val progress = DialogDateTime(this, DialogDateTime.MODE.DATE_Y_M_D_H_M)
-        progress.setTitleMain("选择时间")
-        progress.show()
+        BaseSheetDialog(this, binding = SheetDialogBinding::class.java).show()
     }
 
     fun onSelectMoreClick(view: View?) {
