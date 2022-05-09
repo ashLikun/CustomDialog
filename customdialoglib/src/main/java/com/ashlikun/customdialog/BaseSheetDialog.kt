@@ -59,9 +59,11 @@ open class BaseSheetDialog(
             layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, mRootView)
                 .run { (this as ViewGroup).getChildAt(0) }
             this.binding != null -> this.binding!!.root.also {
-                (it.parent as? ViewGroup)?.removeView(it)
-                mRootView.addView(it,
-                    CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT))
+                if (it.parent != mRootView) {
+                    (it.parent as? ViewGroup)?.removeView(it)
+                    mRootView.addView(it,
+                        CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT))
+                }
             }
             else -> {
                 throw NullPointerException("bot view")
