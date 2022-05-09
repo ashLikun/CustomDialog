@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.*
 import android.widget.LinearLayout
+import android.widget.TableLayout
 import androidx.annotation.DrawableRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.viewbinding.ViewBinding
@@ -45,16 +46,26 @@ open class BaseSheetDialog(
         DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), mRootView, true) as? ViewBinding
     }
 
+
     /**
      * BottomSheetBehavior 的目标view
      */
-    open val sheetView: View = when {
-        layoutView != null -> layoutView!!.also { mRootView.addView(it) }
-        layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, mRootView)
-            .run { (this as ViewGroup).getChildAt(0) }
-        this.binding != null -> this.binding!!.root
-        else -> {
-            throw NullPointerException()
+    open val sheetView by lazy {
+        when {
+            layoutView != null -> layoutView!!.also {
+                mRootView.addView(it,
+                    CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT))
+            }
+            layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, mRootView)
+                .run { (this as ViewGroup).getChildAt(0) }
+            this.binding != null -> this.binding!!.root.also {
+                (it.parent as? ViewGroup)?.removeView(it)
+                mRootView.addView(it,
+                    CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT))
+            }
+            else -> {
+                throw NullPointerException("bot view")
+            }
         }
     }
 

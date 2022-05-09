@@ -43,9 +43,8 @@ constructor(
     binding: Class<out ViewBinding>? = null
 ) : Dialog(context, themeResId) {
 
-    open val binding by lazy {
-        DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
-    }
+    open val binding: ViewBinding?
+        get() = null
 
     open val mRootView by lazy {
         when {
@@ -53,7 +52,7 @@ constructor(
             layoutId != View.NO_ID && layoutId != 0 -> LayoutInflater.from(context).inflate(layoutId, null)
             this.binding != null -> this.binding!!.root
             else -> {
-                throw NullPointerException()
+                throw NullPointerException("bot view")
             }
         }
     }

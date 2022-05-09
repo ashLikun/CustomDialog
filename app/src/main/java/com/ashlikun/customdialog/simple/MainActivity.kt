@@ -1,10 +1,14 @@
 package com.ashlikun.customdialog.simple
 
+import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import androidx.viewbinding.ViewBinding
 import com.ashlikun.customdialog.*
 import com.ashlikun.customdialog.simple.databinding.SheetDialogBinding
 
@@ -31,7 +35,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onTimeClick(view: View?) {
-        BaseSheetDialog(this, binding = SheetDialogBinding::class.java).show()
+//        BaseSheetDialog(this, binding = SheetDialogBinding::class.java).show()
+        MyBaseSheetDialog(this).show()
     }
 
     fun onSelectMoreClick(view: View?) {
@@ -48,4 +53,12 @@ class MainActivity : AppCompatActivity() {
         val progress = DialogTransparency(this)
         progress.show()
     }
+}
+
+class MyBaseSheetDialog(context: Context) : BaseSheetDialog(context) {
+    override val binding by lazy {
+        Log.e("aaaa","2222222")
+        SheetDialogBinding.inflate(layoutInflater)
+    }
+
 }
