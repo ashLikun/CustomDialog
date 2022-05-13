@@ -20,21 +20,25 @@ open class LoadDialog(context: Context) : BaseDialog(context, R.style.Dialog_Loa
             cornerRadius = DialogUtils.dip2px(context, 10f).toFloat()
         }
     }
+    open var content: CharSequence? = null
     override val gravity = Gravity.CENTER
 
     override val layoutId: Int
         protected get() = R.layout.base_dialog_loadding
 
-    override fun initView() {}
+    override fun initView() {
+        setContent(content)
+    }
 
 
     /**
      * 设置内容
      */
-    fun setContent(content: CharSequence?): LoadDialog {
+    open fun setContent(content: CharSequence?): LoadDialog {
+        this.content = content
         val c = f<TextView>(R.id.content)
         c?.text = content ?: ""
-        if (c != null && content == null) c.visibility = View.GONE
+        if (content == null) c?.visibility = View.GONE
         return this
     }
 }
