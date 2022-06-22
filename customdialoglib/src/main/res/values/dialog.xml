@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dialog 主题 -->
-    <style name="Animation.Dialog" parent="android:Animation">
+    <!-- Dialog 动画 -->
+    <style name="Animation"></style>
+    <!-- Dialog 动画 -->
+    <style name="Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/base_dialog_enter</item>
         <!-- //进入时的动画 -->
         <item name="android:windowExitAnimation">@anim/base_dialog_exit</item>
         <!-- //退出时的动画 -->
     </style>
-
+    <!-- Dialog 动画 -->
     <style name="Animation.Dialog.progress">
         <item name="android:windowEnterAnimation">@anim/dialog_progress_anim_enter</item>
         <!-- //进入时的动画 -->
