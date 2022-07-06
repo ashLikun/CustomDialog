@@ -101,9 +101,11 @@ open class BaseSheetDialog(
     override fun baseInitView() {
         super.baseInitView()
         if (hasCanceledOnTouchOutside && hasCancelable) {
+            //跟点击消失
             mRootView.setOnClickListener {
                 finish()
             }
+            //防止内容点击也会消失
             sheetView.setOnClickListener {
 
             }
