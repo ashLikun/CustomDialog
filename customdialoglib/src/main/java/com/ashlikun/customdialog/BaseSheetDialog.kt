@@ -82,8 +82,32 @@ open class BaseSheetDialog(
         }
     }
 
+    /**
+     * 触摸处理
+     */
+    var hasCanceledOnTouchOutside: Boolean = true
+    var hasCancelable: Boolean = true
+    override fun setCanceledOnTouchOutside(cancel: Boolean) {
+        super.setCanceledOnTouchOutside(cancel)
+        hasCanceledOnTouchOutside = cancel
+        hasCancelable = true
+    }
+
+    override fun setCancelable(flag: Boolean) {
+        super.setCancelable(flag)
+        hasCancelable = flag
+    }
+
     override fun baseInitView() {
         super.baseInitView()
+        if (hasCanceledOnTouchOutside && hasCancelable) {
+            mRootView.setOnClickListener {
+                finish()
+            }
+            sheetView.setOnClickListener {
+
+            }
+        }
         requireWindow.setBackgroundDrawableResource(android.R.color.transparent)
         backgroundId?.also(sheetView::setBackgroundResource)
         backgroundDrawable?.also(sheetView::setBackground)
