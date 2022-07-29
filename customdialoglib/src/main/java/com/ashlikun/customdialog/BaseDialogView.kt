@@ -86,6 +86,9 @@ constructor(
 
     open var maskBackground = ColorDrawable(0x88000000.toInt())
 
+    /**
+     * 触摸其他地方消失
+     */
     open var onCancelListener: (() -> Unit)? = null
     open var onShowlListener: (() -> Unit)? = null
 
@@ -130,8 +133,10 @@ constructor(
         }
         //点击其他地方
         setOnClickListener {
-            if (isCancelable && isCanceledOnTouchOutside)
+            if (isCancelable && isCanceledOnTouchOutside) {
                 finish()
+                onCancelListener?.invoke()
+            }
         }
     }
 
@@ -153,12 +158,10 @@ constructor(
     open fun dismiss() {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             (parent as? ViewGroup)?.removeView(this)
-            onCancelListener?.invoke()
         } else {
             post {
                 (parent as? ViewGroup)?.removeView(this)
             }
-            onCancelListener?.invoke()
         }
     }
 
