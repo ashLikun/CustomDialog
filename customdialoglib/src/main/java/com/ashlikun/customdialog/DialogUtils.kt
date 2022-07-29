@@ -1,10 +1,13 @@
 package com.ashlikun.customdialog
 
+import android.R
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.viewbinding.ViewBinding
 import java.lang.reflect.AccessibleObject
@@ -24,10 +27,32 @@ internal object DialogUtils {
         val scale = context.resources.displayMetrics.density
         return (dipValue * scale + 0.5f).toInt()
     }
-    fun screenHeight(context: Context) =  context.resources.displayMetrics.heightPixels
+
+    fun screenHeight(context: Context) = context.resources.displayMetrics.heightPixels
 
     private var viewBindingGetMap = mutableMapOf<Class<*>, AccessibleObject>()
 
+    /**
+     * 获取Bar高度
+     */
+    fun getActionBarSize(context: Context): Int {
+        val styledAttributes = context.theme.obtainStyledAttributes(intArrayOf(R.attr.actionBarSize))
+        val barHeight = styledAttributes.getDimension(0, 0f).toInt()
+        styledAttributes.recycle()
+        return barHeight
+    }
+
+    /**
+     * 获得状态栏的高度
+     */
+    fun getStatusHeight(context: Context): Int {
+        var result = 0
+        val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = context.resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
 
     /**
      * 方法功能：从context中获取activity，如果context不是activity那么久返回null
@@ -155,5 +180,25 @@ internal object DialogUtils {
             e.printStackTrace()
         }
         return null
+    }
+
+    inline fun getViewSize(view: View?, crossinline onSizeListener: (width: Int, height: Int) -> Unit) {
+        view?.run {
+            if (measuredWidth > 0 || measuredHeight > 0) {
+                onSizeListener.invoke(measuredWidth, measuredHeight)
+                return
+            }
+            val observer = viewTreeObserver
+            observer.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    if (measuredHeight <= 0 && measuredWidth <= 0) {
+                        return
+                    }
+                    viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    onSizeListener.invoke(width, height)
+                }
+            })
+        }
+
     }
 }

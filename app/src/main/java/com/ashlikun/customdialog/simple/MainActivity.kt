@@ -10,12 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import com.ashlikun.customdialog.*
+import com.ashlikun.customdialog.simple.databinding.ActivityMainBinding
 import com.ashlikun.customdialog.simple.databinding.SheetDialogBinding
 
 class MainActivity : AppCompatActivity() {
+    val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         val aa = resources.getString(resources.getIdentifier("base_dialog_loadding", "string", packageName))
         val aaa = application.getString(resources.getIdentifier("base_dialog_loadding", "string", packageName))
         val bb = resources.getResourceName(resources.getIdentifier("base_dialog_loadding", "string", packageName))
@@ -49,6 +54,13 @@ class MainActivity : AppCompatActivity() {
         progress.show()
     }
 
+    fun onLoadDialogViewClick(view: View?) {
+        val loadView = LoadView(this)
+//        loadView.attachedView = binding.action2
+//        loadView.isAutoTopMargin = true
+        loadView.show()
+    }
+
     fun dialogTransparency(view: View?) {
         val progress = DialogTransparency(this)
         progress.show()
@@ -57,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
 class MyBaseSheetDialog(context: Context) : BaseSheetDialog(context, backgroundId = R.color.dialog_progress_text_color) {
     override val binding by lazy {
-        Log.e("aaaa","2222222")
+        Log.e("aaaa", "2222222")
         SheetDialogBinding.inflate(layoutInflater)
     }
 

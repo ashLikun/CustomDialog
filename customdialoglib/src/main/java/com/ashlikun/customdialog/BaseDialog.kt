@@ -63,7 +63,7 @@ constructor(
 
     //宿主activity
     open val requireActivity: Activity
-        get() = findActivity(context)!!
+        get() = DialogUtils.getActivity(context)!!
 
     /**
      * 这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
@@ -123,20 +123,8 @@ constructor(
     open fun initWindowParams(params: WindowManager.LayoutParams) {}
 
 
-    private fun findActivity(context: Context?): Activity? {
-        if (context == null) {
-            return null
-        }
-        if (context is Activity) {
-            return context
-        } else if (context is ContextWrapper) {
-            return findActivity(context.baseContext)
-        }
-        return null
-    }
-
     override fun show() {
-        val activity = findActivity(context)
+        val activity = DialogUtils.getActivity(context)
         if (activity != null) {
             //如果页面销毁就不弹出
             if (activity.isFinishing) {

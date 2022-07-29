@@ -43,5 +43,6 @@ dependencies {
     compileOnly rootProject.ext.designVersion
     compileOnly 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
     compileOnly 'com.github.ashLikun:CircleProgressView:+'
+    compileOnly 'androidx.constraintlayout:constraintlayout:2+'
 }
 apply from: '../maven.gradle'
