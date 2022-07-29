@@ -1,14 +1,15 @@
 package com.ashlikun.customdialog
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.*
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
@@ -85,6 +86,9 @@ constructor(
 
     open var maskBackground = ColorDrawable(0x88000000.toInt())
 
+    open var onCancelListener: (() -> Unit)? = null
+    open var onShowlListener: (() -> Unit)? = null
+
     /**
      * 这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
      */
@@ -149,10 +153,12 @@ constructor(
     open fun dismiss() {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             (parent as? ViewGroup)?.removeView(this)
+            onCancelListener?.invoke()
         } else {
             post {
                 (parent as? ViewGroup)?.removeView(this)
             }
+            onCancelListener?.invoke()
         }
     }
 
@@ -219,7 +225,7 @@ constructor(
                 }
             }
         }
-
+        onShowlListener?.invoke()
     }
 
     /**

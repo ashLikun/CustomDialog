@@ -1,17 +1,12 @@
 package com.ashlikun.customdialog
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.os.Looper
 import android.util.AttributeSet
-import android.view.*
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.ashlikun.customdialog.databinding.BaseDialogLoaddingBinding
 
 /**
