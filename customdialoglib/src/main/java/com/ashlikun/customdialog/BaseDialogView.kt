@@ -2,6 +2,7 @@ package com.ashlikun.customdialog
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Looper
 import android.util.AttributeSet
@@ -82,6 +83,8 @@ constructor(
         }
     private var isCreate = false
 
+    open var maskBackground = ColorDrawable(0x88000000.toInt())
+
     /**
      * 这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
      */
@@ -113,8 +116,11 @@ constructor(
         }
         initWindowParams(attachedLayoutParams)
         layoutParams = attachedLayoutParams
-        backgroundId?.also(this::setBackgroundResource)
-        backgroundDrawable?.also(this::setBackground)
+        backgroundId?.also(mRootView::setBackgroundResource)
+        backgroundDrawable?.also(mRootView::setBackground)
+        if (background == null && maskBackground != null) {
+            background = maskBackground
+        }
         mRootView.setOnClickListener {
             //点击加载框无操作
         }

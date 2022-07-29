@@ -3,6 +3,7 @@ package com.ashlikun.customdialog
 import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Looper
 import android.util.AttributeSet
@@ -30,16 +31,14 @@ open class LoadView @JvmOverloads constructor(context: Context, attrs: Attribute
         }
     }
     open var contentText: CharSequence? = null
+    override var maskBackground = ColorDrawable(0x00000000)
     override val binding by lazy {
         BaseDialogLoaddingBinding.inflate(LayoutInflater.from(context))
     }
 
 
-
     override fun initView() {
-        //添加加载控件
-        background = ColorDrawable(0x44ff0000)
-
+        setContent(contentText)
     }
 
     /**
