@@ -130,7 +130,7 @@ constructor(
         }
         //点击其他地方
         setOnClickListener {
-            if (isCancelable || isCanceledOnTouchOutside)
+            if (isCancelable && isCanceledOnTouchOutside)
                 finish()
         }
     }
