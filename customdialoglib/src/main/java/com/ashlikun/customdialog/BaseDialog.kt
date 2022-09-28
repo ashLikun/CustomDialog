@@ -9,10 +9,14 @@ import android.view.View
 import android.app.Activity
 import android.content.ContextWrapper
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.viewbinding.ViewBinding
 import java.lang.NullPointerException
 
@@ -41,11 +45,14 @@ constructor(
     protected open val layoutId: Int = View.NO_ID,
     //获取布局 优先级3
     binding: Class<out ViewBinding>? = null
-) : Dialog(context, themeResId) {
+) : Dialog(context, themeResId), LifecycleOwner {
+
+    private val mLifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
 
     open val binding by lazy {
         DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
     }
+
     open val mRootView by lazy {
         when {
             layoutView != null -> layoutView!!
@@ -82,7 +89,7 @@ constructor(
         super.onCreate(savedInstanceState)
         //这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
         setContentView()
-
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
         baseInitView()
         initView()
     }
@@ -124,6 +131,40 @@ constructor(
     open fun initWindowParams(params: WindowManager.LayoutParams) {}
 
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        Log.e("NMyDialog", " onWindowFocusChanged ${hasFocus}")
+        if (hasFocus) {
+            onResume()
+        } else {
+            onPause()
+        }
+    }
+
+    protected fun onPause() {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    }
+
+    override fun onStop() {
+        onPause()
+        super.onStop()
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+    }
+
+    protected fun onResume() {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    }
+
+    protected fun onDestroy() {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    }
+
     override fun show() {
         val activity = DialogUtils.getActivity(context)
         if (activity != null) {
@@ -133,6 +174,15 @@ constructor(
             }
         }
         super.show()
+    }
+
+    override fun dismiss() {
+        super.dismiss()
+        onDestroy()
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        return mLifecycleRegistry
     }
 
     /**

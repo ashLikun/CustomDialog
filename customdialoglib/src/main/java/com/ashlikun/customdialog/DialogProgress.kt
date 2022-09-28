@@ -25,6 +25,11 @@ open class DialogProgress @JvmOverloads constructor(
         f(R.id.title)
     }
 
+    private val titleText: CharSequence
+        set(value) = {
+
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -42,12 +47,17 @@ open class DialogProgress @JvmOverloads constructor(
     }
 
     fun setTitleText(title: String?): DialogProgress {
-        if (title.isNullOrEmpty()) {
-            titleView.visibility = View.GONE
+        if (isShowing) {
+            if (title.isNullOrEmpty()) {
+                titleView.visibility = View.GONE
+            } else {
+                titleView.visibility = View.VISIBLE
+                titleView.text = title
+            }
         } else {
-            titleView.visibility = View.VISIBLE
-            titleView.text = title
+
         }
+
         return this
     }
 

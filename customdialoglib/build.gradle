@@ -42,7 +42,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.designVersion
     compileOnly 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
-    compileOnly 'com.github.ashLikun:CircleProgressView:+'
+    compileOnly 'com.github.ashLikun:CircleProgressView:2.0.2'
     compileOnly 'androidx.constraintlayout:constraintlayout:2+'
 }
 apply from: '../maven.gradle'
