@@ -19,6 +19,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.viewbinding.ViewBinding
 import java.lang.NullPointerException
+import com.ashlikun.okhttputils.http.OkHttpUtils
 
 /**
  * 作者　　: 李坤
@@ -163,6 +164,7 @@ constructor(
 
     protected fun onDestroy() {
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        cancelAllHttp()
     }
 
     override fun show() {
@@ -199,5 +201,14 @@ constructor(
         return findViewById(id)
     }
 
+    /**
+     * 销毁网络访问
+     */
+    fun cancelAllHttp() {
+        //非强制需要这个库
+        runCatching {
+            OkHttpUtils.get().cancelTag(this)
+        }
+    }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import com.ashlikun.numberprogressbar.NumberProgressBar
+import kotlin.math.roundToInt
 
 /**
  * 作者　　: 李坤
@@ -25,9 +26,18 @@ open class DialogProgress @JvmOverloads constructor(
         f(R.id.title)
     }
 
-    private val titleText: CharSequence
-        set(value) = {
-
+    open var titleText: CharSequence? = null
+        set(value) {
+            field = value
+            setTitleText(value)
+        }
+    open var progress: Int = 0
+        get() = progressBar.progress
+        set(value) {
+            field = (value * (maxValus / 100.0).roundToInt()).toInt()
+            if (isShowing) {
+                progressBar.progress = (progress * Math.round(maxValus / 100.0)).toInt()
+            }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,26 +48,18 @@ open class DialogProgress @JvmOverloads constructor(
         get() = R.layout.base_dialog_progress
 
     override fun initView() {
-
+        setTitleText(titleText)
+        progressBar.progress = progress
     }
 
-    fun setProgress(progress: Int): DialogProgress {
-        progressBar.progress = (progress * Math.round(maxValus / 100.0)).toInt()
-        return this
-    }
 
-    fun setTitleText(title: String?): DialogProgress {
-        if (isShowing) {
-            if (title.isNullOrEmpty()) {
-                titleView.visibility = View.GONE
-            } else {
-                titleView.visibility = View.VISIBLE
-                titleView.text = title
-            }
+    private fun setTitleText(title: CharSequence?): DialogProgress {
+        if (title.isNullOrEmpty()) {
+            titleView.visibility = View.GONE
         } else {
-
+            titleView.visibility = View.VISIBLE
+            titleView.text = title
         }
-
         return this
     }
 
@@ -70,10 +72,4 @@ open class DialogProgress @JvmOverloads constructor(
             progressBar.max = value
         }
 
-
-    /**
-     * 获取当前尺度
-     */
-    val progress: Int
-        get() = progressBar.progress
 }
