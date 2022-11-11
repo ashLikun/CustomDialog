@@ -197,9 +197,11 @@ constructor(
         runCatching {
             when (attachedView) {
                 is FrameLayout -> {
+                    (attachedView as FrameLayout).removeView(this)
                     (attachedView as FrameLayout).addView(this, attachedLayoutParams)
                 }
                 is RelativeLayout -> {
+                    (attachedView as RelativeLayout).removeView(this)
                     (attachedView as RelativeLayout).addView(this, attachedLayoutParams)
                 }
                 //约束布局
@@ -209,6 +211,7 @@ constructor(
                     params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
                     params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID
                     params.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID
+                    (attachedView as ConstraintLayout).removeView(this)
                     (attachedView as ConstraintLayout).addView(this, params)
                 }
                 //其他布局,更具附属布局相对于屏幕的位置设置Margin
@@ -223,6 +226,7 @@ constructor(
                         params.rightMargin = screen[0] / 2
                         params.height = attachedView.height
                         params.width = attachedView.width
+                        decorView.removeView(this)
                         decorView.addView(this, params)
                     }
                 }
