@@ -1,25 +1,22 @@
 package com.ashlikun.customdialog
 
-import kotlin.jvm.JvmOverloads
-import android.content.Context
-import android.app.Dialog
-import android.os.Bundle
-import android.view.WindowManager
-import android.view.View
 import android.app.Activity
-import android.content.ContextWrapper
+import android.app.Dialog
+import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.viewbinding.ViewBinding
-import java.lang.NullPointerException
-import com.ashlikun.okhttputils.http.OkHttpUtils
+import com.ashlikun.okhttputils.http.OkHttpManage
 
 /**
  * 作者　　: 李坤
@@ -207,7 +204,7 @@ constructor(
     fun cancelAllHttp() {
         //非强制需要这个库
         runCatching {
-            OkHttpUtils.get().cancelTag(this)
+            OkHttpManage.cancelTag(this)
         }
     }
 
