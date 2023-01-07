@@ -34,9 +34,9 @@ open class DialogProgress @JvmOverloads constructor(
     open var progress: Int = 0
         get() = progressBar.progress
         set(value) {
-            field = (value * (maxValus / 100.0).roundToInt()).toInt()
+            field = (value * (maxValus / 100.0).roundToInt())
             if (isShowing) {
-                progressBar.progress = (progress * Math.round(maxValus / 100.0)).toInt()
+                progressBar.progress = (value * (maxValus / 100.0).roundToInt())
             }
         }
 

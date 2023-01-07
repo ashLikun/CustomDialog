@@ -79,9 +79,6 @@ constructor(
 
     //是否自动适配顶部的AppBar高度和状态栏高度，留出顶部的距离,只有attachedView == decorView 才可以
     open var isAutoTopMargin = false
-        set(value) {
-            field = value
-        }
     private var isCreate = false
 
     open var maskBackground = ColorDrawable(0x88000000.toInt())
