@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:progress_current="20"
         app:progress_max="100"
         app:progress_reached_bar_height="2dp"
         app:progress_reached_color="@color/dialog_progress_text_color"
