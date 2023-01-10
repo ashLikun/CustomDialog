@@ -139,7 +139,7 @@ constructor(
         }
     }
 
-    protected fun onPause() {
+    protected open fun onPause() {
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
 
@@ -155,11 +155,11 @@ constructor(
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }
 
-    protected fun onResume() {
+    protected open fun onResume() {
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
-    protected fun onDestroy() {
+    protected open fun onDestroy() {
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         cancelAllHttp()
     }
