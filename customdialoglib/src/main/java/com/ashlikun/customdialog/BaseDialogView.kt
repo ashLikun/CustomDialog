@@ -172,10 +172,11 @@ constructor(
             }
         }
         if (isShowing) return
-        if (Looper.myLooper() == Looper.getMainLooper()) {
+
+        if (Looper.myLooper() == (attachedView.handler?.looper ?: Looper.getMainLooper())) {
             startAttachView()
         } else {
-            post {
+            attachedView.post {
                 startAttachView()
             }
         }
