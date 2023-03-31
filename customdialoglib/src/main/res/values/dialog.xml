@@ -16,11 +16,25 @@
         <item name="android:windowExitAnimation">@anim/dialog_progress_anim_exit</item>
         <!-- //退出时的动画 -->
     </style>
-    <!--底部进入动画-->
+    <!--底部进入动画 300ms-->
     <style name="Animation.Dialog.Bottom_Form_top">
         <item name="android:windowEnterAnimation">@anim/dialog_anim_bottom_form_top_enter</item>
         <!-- //进入时的动画 -->
         <item name="android:windowExitAnimation">@anim/dialog_anim_bottom_form_top_exit</item>
+        <!-- //退出时的动画 -->
+    </style>
+    <!--底部进入动画 150ms-->
+    <style name="Animation.Dialog.Bottom_Form_top150">
+        <item name="android:windowEnterAnimation">@anim/dialog_anim_bottom_form_top_enter150</item>
+        <!-- //进入时的动画 -->
+        <item name="android:windowExitAnimation">@anim/dialog_anim_bottom_form_top_exit150</item>
+        <!-- //退出时的动画 -->
+    </style>
+    <!--底部进入动画 500ms-->
+    <style name="Animation.Dialog.Bottom_Form_top500">
+        <item name="android:windowEnterAnimation">@anim/dialog_anim_bottom_form_top_enter500</item>
+        <!-- //进入时的动画 -->
+        <item name="android:windowExitAnimation">@anim/dialog_anim_bottom_form_top_exit500</item>
         <!-- //退出时的动画 -->
     </style>
 
@@ -48,6 +62,19 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top</item>
+    </style>
+    <style name="Dialog.BottonFormTop500">
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top500</item>
+    </style>
+    <!--底部出现-->
+    <style name="Dialog.BottonFormTop150">
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Dialog.Bottom_Form_top150</item>
     </style>
 
     <!--全屏-->
