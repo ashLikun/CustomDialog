@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         val loadView = LoadView(this)
 //        loadView.attachedView = binding.action2
 //        loadView.isAutoTopMargin = true
-        loadView.show()
+
     }
 
     fun dialogTransparency(view: View?) {

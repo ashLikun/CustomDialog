@@ -43,9 +43,9 @@ constructor(
     protected open val layoutId: Int = View.NO_ID,
     //获取布局 优先级3
     binding: Class<out ViewBinding>? = null
-) : Dialog(context, themeResId), LifecycleOwner {
+) : Dialog(context, themeResId), LifecycleOwner, LifecycleOwner260 {
 
-    private val mLifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
+    override val lifecycle = LifecycleRegistry(this)
 
     open val binding by lazy {
         DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
@@ -87,7 +87,7 @@ constructor(
         super.onCreate(savedInstanceState)
         //这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
         setContentView()
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
         baseInitView()
         initView()
     }
@@ -140,27 +140,27 @@ constructor(
     }
 
     protected open fun onPause() {
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
 
     override fun onStop() {
         onPause()
         super.onStop()
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
 
     }
 
     override fun onStart() {
         super.onStart()
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }
 
     protected open fun onResume() {
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
     protected open fun onDestroy() {
-        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         cancelAllHttp()
     }
 
@@ -181,7 +181,7 @@ constructor(
     }
 
     override fun getLifecycle(): Lifecycle {
-        return mLifecycleRegistry
+        return lifecycle
     }
 
     /**
