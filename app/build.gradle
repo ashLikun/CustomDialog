@@ -12,7 +12,6 @@ android {
         versionName rootProject.ext.versionName
     }
     buildFeatures {
-        buildConfig = false
         viewBinding = true
     }
     buildTypes {
@@ -40,7 +39,4 @@ dependencies {
     implementation project(':customdialoglib')
     //kotlin 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
-}
-repositories {
-    mavenCentral()
 }

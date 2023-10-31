@@ -15,7 +15,6 @@ android {
         versionName rootProject.ext.versionName
     }
     buildFeatures {
-        viewBinding = true
         buildConfig = false
     }
 
