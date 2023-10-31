@@ -43,13 +43,13 @@ constructor(
     protected open val layoutId: Int = View.NO_ID,
     //获取布局 优先级3
     binding: Class<out ViewBinding>? = null
-) : Dialog(context, themeResId), LifecycleOwner, LifecycleOwner260 {
-
-    override val lifecycle = LifecycleRegistry(this)
-
+) : LifecycleOwner260(context, themeResId) {
+    open val lifecycleRegistry = LifecycleRegistry(this)
     open val binding by lazy {
         DialogUtils.getViewBindingToClass(binding, LayoutInflater.from(context), null, false) as? ViewBinding
     }
+
+    override fun getLifecycle260() = lifecycleRegistry
 
     open val mRootView by lazy {
         when {
@@ -87,7 +87,7 @@ constructor(
         super.onCreate(savedInstanceState)
         //这个直接在onCreate调用，如果在构造方法会出现被重写的属性没有值
         setContentView()
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
         baseInitView()
         initView()
     }
@@ -140,27 +140,27 @@ constructor(
     }
 
     protected open fun onPause() {
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     }
 
     override fun onStop() {
         onPause()
         super.onStop()
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
 
     }
 
     override fun onStart() {
         super.onStart()
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }
 
     protected open fun onResume() {
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
     protected open fun onDestroy() {
-        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         cancelAllHttp()
     }
 
@@ -178,10 +178,6 @@ constructor(
     override fun dismiss() {
         super.dismiss()
         onDestroy()
-    }
-
-    override fun getLifecycle(): Lifecycle {
-        return lifecycle
     }
 
     /**

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 // 使用Kotlin插件
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
 // GitHub账户名
 group = 'com.github.ashLikun'
 
@@ -45,5 +44,6 @@ dependencies {
     compileOnly 'com.github.ashLikun:CircleProgressView:2.0.2'
     compileOnly 'androidx.constraintlayout:constraintlayout:2+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:3.4.3'
+//    compileOnly 'androidx.lifecycle:lifecycle-common:2.6.0'
 }
-apply from: '../maven.gradle'
+//apply from: '../maven.gradle'
