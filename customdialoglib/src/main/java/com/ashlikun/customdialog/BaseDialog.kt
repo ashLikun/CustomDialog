@@ -16,7 +16,6 @@ import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.viewbinding.ViewBinding
 import com.ashlikun.okhttputils.http.OkHttpManage
 
