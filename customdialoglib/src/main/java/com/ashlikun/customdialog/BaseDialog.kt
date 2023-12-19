@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.DrawableRes
@@ -15,6 +16,7 @@ import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.viewbinding.ViewBinding
 import com.ashlikun.okhttputils.http.OkHttpManage
 
@@ -204,4 +206,37 @@ constructor(
         }
     }
 
+    private fun initViewTreeOwners() {
+        initViewTreeOwners?.invoke(this)
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        initViewTreeOwners()
+        super.setContentView(layoutResID)
+    }
+
+    override fun setContentView(view: View) {
+        initViewTreeOwners()
+        super.setContentView(view)
+    }
+
+    override fun setContentView(view: View, params: ViewGroup.LayoutParams?) {
+        initViewTreeOwners()
+        super.setContentView(view, params)
+    }
+
+    override fun addContentView(view: View, params: ViewGroup.LayoutParams?) {
+        initViewTreeOwners()
+        super.addContentView(view, params)
+    }
+
+    companion object {
+        //如果view需要lifecycle 就需要实现
+        /**
+         * window!!.decorView.setViewTreeLifecycleOwner(this)
+         *         window!!.decorView.setViewTreeOnBackPressedDispatcherOwner(this)
+         *         window!!.decorView.setViewTreeSavedStateRegistryOwner(this)
+         */
+        var initViewTreeOwners: ((BaseDialog) -> Unit)? = null
+    }
 }
