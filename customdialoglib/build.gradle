@@ -46,4 +46,4 @@ dependencies {
     compileOnly 'com.github.ashLikun:OkHttpUtils:3.4.3'
 //    compileOnly 'androidx.lifecycle:lifecycle-common:2.6.0'
 }
-//apply from: '../maven.gradle'
+apply from: '../maven.gradle'
