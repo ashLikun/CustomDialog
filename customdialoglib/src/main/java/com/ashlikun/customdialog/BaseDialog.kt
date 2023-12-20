@@ -16,6 +16,7 @@ import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.viewbinding.ViewBinding
 import com.ashlikun.okhttputils.http.OkHttpManage
 
@@ -206,7 +207,7 @@ constructor(
     }
 
     private fun initViewTreeOwners() {
-        initViewTreeOwners?.invoke(this)
+        window?.decorView?.let { ViewTreeLifecycleOwner.set(it, this) }
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -229,13 +230,4 @@ constructor(
         super.addContentView(view, params)
     }
 
-    companion object {
-        //如果view需要lifecycle 就需要实现
-        /**
-         * window!!.decorView.setViewTreeLifecycleOwner(this)
-         *         window!!.decorView.setViewTreeOnBackPressedDispatcherOwner(this)
-         *         window!!.decorView.setViewTreeSavedStateRegistryOwner(this)
-         */
-        var initViewTreeOwners: ((BaseDialog) -> Unit)? = null
-    }
 }

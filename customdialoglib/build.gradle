@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.github.ashLikun:CircleProgressView:2.0.3'
     compileOnly 'androidx.constraintlayout:constraintlayout:2+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:3.4.3'
+    compileOnly 'androidx.lifecycle:lifecycle-runtime:2.3.0'
 //    compileOnly 'androidx.lifecycle:lifecycle-common:2.6.0'
 }
 apply from: '../maven.gradle'
