@@ -17,11 +17,10 @@ import androidx.lifecycle.LifecycleOwner;
  */
 public abstract class LifecycleOwner260 extends Dialog implements LifecycleOwner {
 
-    public LifecycleOwner260(@NonNull Context context, int themeResId) {
+    public LifecycleOwner260(Context context, int themeResId) {
         super(context, themeResId);
     }
 
-    @NonNull
     @Override
     public Lifecycle getLifecycle() {
         return getLifecycle260();
