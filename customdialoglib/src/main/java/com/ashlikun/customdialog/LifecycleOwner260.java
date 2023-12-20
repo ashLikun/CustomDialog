@@ -3,7 +3,6 @@ package com.ashlikun.customdialog;
 import android.app.Dialog;
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 

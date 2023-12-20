@@ -40,8 +40,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.designVersion
-    compileOnly 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
-    compileOnly 'com.github.ashLikun:CircleProgressView:2.0.2'
+    implementation 'com.github.ashLikun.frame:numberprogressbar:3.2.7'
+    implementation 'com.github.ashLikun:CircleProgressView:2.0.3'
     compileOnly 'androidx.constraintlayout:constraintlayout:2+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:3.4.3'
 //    compileOnly 'androidx.lifecycle:lifecycle-common:2.6.0'
